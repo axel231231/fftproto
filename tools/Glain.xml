@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Patches>
+  <Patch name="Random unit gear based on story progression - override with 0x16b">
+    <Description>
+      Random unit gear based on story progression, but can be overridden with 0x16b for any unit.
+      (0x16b is the last row, last column in the ENTD for a unit, in the Unknown box, two underneath
+       the top value that has its own row.)
+    </Description>
+    <Location file="BATTLE_BIN" offset="F59BC">  
+      6B01AE91
+      0580083C
+      0300C015
+      00000000
+      D8780E91
+      00000000
+      0100CF2D
+      0800E003
+      2170CF01
+    </Location>
+    <Location file="SCUS_942_21" offset="4D49C">
+      9400BFAF
+      21688000
+      6F72050C
+      20000234
+    </Location>
+    <Location file="SCUS_942_21" offset="4D52C">
+      00000000
+    </Location>
+    <Location file="SCUS_942_21" offset="4D5D8">
+      0A00A390
+    </Location>
+  </Patch>
+  <Patch name="Random unit gear based on story progression">
+    <Description>
+      Random unit gear based on story progression
+    </Description>
+    <Location file="BATTLE_BIN" offset="F59BC">  
+      FF00A530
+      E4FFBD27
+      1400BFAF
+      0400ADAF
+      0800A5AF
+      0C00A6AF
+      1000A7AF
+      64ED040C
+      6F000434
+      0100452C
+      21704500
+      1400BF8F
+      0400AD8F
+      0800A58F
+      0C00A68F
+      1000A78F
+      1C00BD27
+      20000234
+      0800E003
+      00000000
+    </Location>
+    <Location file="SCUS_942_21" offset="4D49C">
+      9400BFAF
+      21688000
+      6F72050C
+      20000234
+    </Location>
+    <Location file="SCUS_942_21" offset="4D52C">
+      00000000
+    </Location>
+    <Location file="SCUS_942_21" offset="4D5D8">
+      0A00A390
+    </Location>
+  </Patch> 
+  <Patch name="Random unit equipment more selective">
+    <Description>
+	Random unit equipment will now be more selective
+        of secondary item types. (You shouldn't see 
+        knights in Chapter 2 using linen robes)
+    </Description>
+    <Location file="SCUS_942_21" offset="4D53C">
+      00000F34
+    </Location>
+    <Location file="SCUS_942_21" offset="4D5F0">
+      03000214
+      01000F34
+      01002925
+      00000000
+      21606000
+      21182001
+    </Location>
+    <Location file="SCUS_942_21" offset="4D628">
+      01003025
+      0C000F10
+    </Location>
+  </Patch>
+  <Patch name="Crystals can include special job abilities (Base job matching check removed)">
+    <Description>
+      Crystals can contain abilities from special jobs regardless of the inheriting unit's base job. However, the inheriting unit's base job would have to include the ability AT THE SAME INDEX in order to learn it. (e.g. Ramza could learn Night Sword from Gafgarion's crystal if it was Gafgarion's 10th ability  and Ramza's 02 Squire class also contained Night Sword as the 10th ability.)
+    </Description>
+    <Location file="BATTLE_BIN" offset="1196E8">
+      65006B15
+    </Location>
+    <Location file="BATTLE_BIN" offset="1197F4">
+      D4720508
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5B50">
+      1400A016
+      00000000
+      FCFFBD27
+      0000A2AF
+      3C00A38F
+      00000000
+      40100300
+      21104300
+      0680033C
+      9461638C
+      00110200
+      21104300
+      00004990
+      21282002
+      5A69010C
+      21202001
+      21504000
+      0000A28F
+      0400BD27
+      03005415
+      00000000
+      FE010608
+      00000000
+      12020608
+      00000000
+    </Location>
+  </Patch>
+  <Patch name="Formula 3B: Mana Burn/Feedback">
+    <Description>
+	Changes formula 3B to a mana burn/feedback ability 
+        (destroys all MP and deals equivalent HP damage), physical evade.
+        For magic evade, change '4421060C' to '6E21060C'. To overwrite
+        a different formula, change the offset.
+    </Description>
+    <Location file="BATTLE_BIN" offset="11FD58">
+      E8FFBD27
+      1000BFAF
+      4421060C
+      00000000
+      0A004014
+      00000000
+      1980023C
+      982D428C
+      1980033C
+      902D638C
+      2C004494
+      A0000234
+      250062A0
+      080064A4
+      040064A4
+      1000BF8F
+      1800BD27
+      0800E003
+      00000000
+    </Location>
+  </Patch>
+  <Patch name="Formula 11: Magic Damage = MA * (WP+Y)">
+    <Description>
+	Changes formula 11 to magic damage, MA * (WP+Y), physical evade.
+        For magic evade, change '4421060C' to '6E21060C'. To overwrite
+        a different formula, change the first offset.
+    </Description>
+    <Location file="BATTLE_BIN" offset="122124">
+      C0720508
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5B00">
+      E8FFBD27
+      1000BFAF
+      4421060C
+      00000000
+      05004014
+      00000000
+      9472050C
+      00000000
+      5922060C
+      00000000
+      1000BF8F
+      1800BD27
+      0800E003
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5A50">
+      1980043C
+      942D848C
+      1980023C
+      02394290
+      1980033C
+      FA386390
+      37008490
+      21104300
+      1980013C
+      D03822A4
+      1980013C
+      CE3824A4
+      0800E003
+      00000000
+    </Location>
+  </Patch>
+  <Patch name="Formulas [17], [3e], and [44] can be elementally canceled">
+    <Description>
+      Formulas [17], [3e], and [44] can be elementally canceled
+    </Description>
+    <Location file="BATTLE_BIN" offset="11fe54">
+      1980023C
+      982D428C
+      1980033C
+      902D638C
+      2C004494
+      80000234
+      250062A0
+      FE1B0608
+      040064A4
+    </Location>
+    <Location file="BATTLE_BIN" offset="11f6ec">
+      1980033C
+      982D638C
+      80000434
+      28006294
+      00000000
+      FFFF4224
+      2A284000
+      1980033C
+      902D638C
+      21104500
+      040062A4
+      FE1B0608
+      250064A0
+    </Location>
+  </Patch>
+  <Patch name="Swordskill element strengthen and Dark/Night Sword elemental">
+    <Description>
+      Swordskill element fix - like previous fixes, but with Dark/Night sword elemental, using (WP+Y) and can status proc like Holy Sword can; Also, elements should strengthen even if they're not on the weapon.
+    </Description>
+    <Location file="BATTLE_BIN" offset="F5C00">
+      E8FFBD27
+      1000BFAF
+      0C00B0AF
+      21808000
+      4421060C
+      00000000
+      32004014
+      00000000
+      9717060C
+      00000000
+      1980083C
+      CE380995
+      F9380A91
+      F7380481
+      04390581
+      F4380681
+      07484901
+      CE3809A5
+      2000C630
+      0200C01C
+      00000000
+      25208500
+      043904A1
+      E917060C
+      00000000
+      A921060C
+      00000000
+      1980043C
+      0439848C
+      00000000
+      A613060C
+      00000000
+      1980023C
+      902D428C
+      00000000
+      00004290
+      00000000
+      03004010
+      00000000
+      3F1C060C
+      00000000
+      0D000012
+      00000000
+      02000824
+      08000812
+      00000000
+      921C060C
+      00000000
+      81000834
+      07004814
+      00000000
+      37730508
+      00000000
+      1B1D060C
+      00000000
+      AD1F060C
+      00000000
+      1000BF8F
+      0C00B08F
+      1800BD27
+      0800E003
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="12026C">	
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="1202E0"> 
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="12048C"> 
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="122B20">
+      00730508
+      00000424
+    </Location>
+    <Location file="BATTLE_BIN" offset="122C90">
+      00730508
+      01000424
+    </Location>
+    <Location file="BATTLE_BIN" offset="122C50">
+      00730508
+      02000424
+    </Location>
+    <Location file="BATTLE_BIN" offset="120338">
+      81000234
+    </Location>
+  </Patch>
+  <Patch name="Swordskill Patch Addend: Switch to MA * (WP+Y)">
+    <Description>
+       Swordskill Patch Addend: Switch to MA * (WP+Y). Requires swordskill
+       patch to be patched first.
+    </Description>
+    <Location file="BATTLE_BIN" offset="F5C20">
+      9472050C
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5C5C">
+      D121060C
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5C64">
+      DF21060C
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5A50">
+      1980043C
+      942D848C
+      1980023C
+      02394290
+      1980033C
+      FA386390
+      37008490
+      21104300
+      1980013C
+      D03822A4
+      1980013C
+      CE3824A4
+      0800E003
+      00000000
+    </Location>
+  </Patch>
+  <Patch name="Signed Ability Y Values">
+    <Description>
+      Ability Y value is now signed and can accept integers between 
+      -128 and +127, inclusive. To specify a negative value for Y, 
+      take the number and add 256 (e.g. -3 would be input as 253).
+    </Description>
+    <Location file="BATTLE_BIN" offset="11ECA0">
+      FA386380
+    </Location>
+    <Location file="BATTLE_BIN" offset="11ECE0">
+      FA386380
+    </Location>
+    <Location file="BATTLE_BIN" offset="11ED20">
+      FA386380
+    </Location>
+    <Location file="BATTLE_BIN" offset="11ED60">
+      FA386380
+    </Location>
+    <Location file="BATTLE_BIN" offset="11EE10">
+      FA386380
+    </Location>
+    <Location file="BATTLE_BIN" offset="11EE70">
+      FA386380
+    </Location>
+    <Location file="BATTLE_BIN" offset="11F638">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="11F6A0">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="11F820">
+      FA386380
+    </Location>
+    <Location file="BATTLE_BIN" offset="11F8F4">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="11F930">
+      FA386380
+    </Location>
+    <Location file="BATTLE_BIN" offset="11FC64">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="11FC80">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="11FC9C">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="11FCB8">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="11FD04">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="11FD30">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="11FD74">
+      FA386380
+    </Location>
+    <Location file="BATTLE_BIN" offset="11FEA8">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="121C40">
+      FA386380
+    </Location>
+    <Location file="BATTLE_BIN" offset="1236C4">
+      FA384280
+    </Location>
+    <Location file="BATTLE_BIN" offset="123724">
+      FA384280
+    </Location>
+  </Patch>
+  <Patch name="Formula 54 becomes HealMP_(Y%)">
+    <Description>
+      Formula 54 becomes HealMP_(Y%)
+    </Description>
+    <Location file="BATTLE_BIN" offset="EAF1C">
+      1980023C
+      982D438C
+      FA384480
+      2E006384
+      64000520
+      18008300
+      12200000
+      902D468C
+      10000734
+      1A008500
+      12200000
+      0A00C4A4
+      0800E003
+      2500C7A0
+    </Location>
+    <Location file="BATTLE_BIN" offset="123668">
+      C7470508
+      00000000
+    </Location>
+  </Patch>
+  <Patch name="Formula 44: Use HP instead of MP">
+    <Description>Formula 44: Use HP instead of MP</Description>
+    <Location file="BATTLE_BIN" offset="11FE64">
+      28004494
+    </Location>
+  </Patch>
+  <Patch name="All formulas apply elemental">
+    <Description>All formulas apply elemental</Description>
+    <Location file="BATTLE_BIN" offset="1249F0">
+      FE1B0608
+    </Location>
+    <Location file="BATTLE_BIN" offset="11FFE0">
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="121794">
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="121E2C">
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="122D20">
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="12361C">
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5C78">
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="11DF1C">
+      1980083C
+      902D098D
+      8C2D0A8D
+      04002B95
+      00000000
+      43580B00
+      04002BA5
+      06004BA5
+      00000000
+      00000000
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="11DF64">
+      1980083C
+      902D098D
+      8C2D0A8D
+      10002395
+      04002485
+      00086334
+      40200400
+      100023A5
+      040024A5
+      060044A5
+    </Location>
+    <Location file="BATTLE_BIN" offset="120010">
+      4C73050C
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5D30">
+      1980083C
+      F4380991
+      F3380E91
+      004A0900
+      25482E01
+      F7381091
+      04390C91
+      D6380D91
+      04200A34
+      24582A01
+      05006A11
+      00000000
+      0300A011
+      00000000
+      5D730508
+      00000000
+      25800C02
+      80730508
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="11DEB8">
+      1980033C
+      902D638C
+      6873050C
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5DA0">
+      1980083C
+      902D0E8D
+      8C2D098D
+      40000F34
+      80000A34
+      0400CD95
+      06002B95
+      0400C0A5
+      2500CFA1
+      0600CDA5
+      060020A5
+      25002AA5
+      0800E003
+      04002BA5
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5E00">
+      1980083C
+      942D0E8D
+      902D098D
+      7100CE91
+      04002A95
+      2470D001
+      0700C011
+      8C2D0C8D
+      80680A00
+      2168AA01
+      0200AD21
+      83680D00
+      04002DA5
+      06008DA5
+      0800E003
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="12002C">
+      1980033C
+      902D638C
+      00000000
+      04006284
+      00000000
+      40100200
+      040062A4
+      22006290
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="120060">
+      00000000
+      25008890
+      00000000
+      08000835
+      250088A0
+    </Location>
+    <Location file="BATTLE_BIN" offset="120124">
+      501C0608
+    </Location>
+    <Location file="BATTLE_BIN" offset="11EFA4">
+      0800E003
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="11EFFC">
+      0800E003
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="CEE4">
+      98730508
+    </Location>
+    <Location file="BATTLE_BIN" offset="F5E60">
+      1980083C
+      043900A1
+      0800E003
+      F73800A1
+    </Location>
+    <Location file="BATTLE_BIN" offset="F65C0">
+      F4FFBD27
+      0400BFAF
+      9013060C
+      00000000
+      1980083C
+      902D098D
+      8C2D0A8D
+      0800A9AF
+      902D0AAD
+      9013060C
+      00000000
+      0800A98F
+      1980083C
+      902D09AD
+      0400BF8F
+      0C00BD27
+      0800E003
+      00000000
+    </Location>
+    <Location file="BATTLE_BIN" offset="1200C8">
+      7075050C
+    </Location>
+    <Location file="BATTLE_BIN" offset="11DEF8">
+      7075050C
+    </Location>
+  </Patch>
+  <Patch name="AFAE: Addend: Damage multiplied by 0.XXXXYYYY decimal (default 2/3)">
+    <Description>
+      All damage multiplied by decimal. Requires All formulas apply elemental patch 
+      (and that patch must be patched first, not at the same time)
+    </Description>
+    <Location file="BATTLE_BIN" offset="1249F0" mode="ASM">
+      j       0x15d230
+    </Location>
+    <Location file="BATTLE_BIN" offset="F6160" mode="ASM">
+      lui     t0,0x8019
+      lw      t1,0x2d90(t0)
+      lw      t2,0x2d8c(t0)
+      lhu     t3,4(t1)
+      li      t7,0xaaaaaaab
+      
+      sltiu   t8,t3,1
+      sltiu   t8,t8,1
+      multu   t3,t7
+      mfhi    t3
+      sltiu   t9,t3,1
+      and     t8,t8,t9
+      addu    t3,t3,t8
+      
+      lhu     t4,6(t2)
+      lhu     t5,8(t1)
+      
+      sltiu   t8,t4,1
+      sltiu   t8,t8,1
+      multu   t4,t7
+      mfhi    t4
+      sltiu   t9,t4,1
+      and     t8,t8,t9
+      addu    t4,t4,t8
+      
+      lhu     t6,10(t2)
+      sh      t3,4(t1)
+      
+      sltiu   t8,t5,1
+      sltiu   t8,t8,1
+      multu   t5,t7
+      mfhi    t5
+      sltiu   t9,t5,1
+      and     t8,t8,t9
+      addu    t5,t5,t8
+
+      sh      t4,6(t2)
+      sh      t5,8(t1)
+
+      sltiu   t8,t6,1
+      sltiu   t8,t8,1
+      multu   t6,t7
+      mfhi    t6
+      sltiu   t9,t6,1
+      and     t8,t8,t9
+      addu    t6,t6,t8
+
+      jr      ra
+      sh      t6,10(t2)
+    </Location>
+    <Location file="BATTLE_BIN" offset="F6230" mode="ASM">
+      addiu   sp,sp,-8
+      sw      ra,4(sp)
+      jal     0x186ff8
+      nop
+      jal     0x15d160
+      nop
+      lw      ra,4(sp)
+      addiu   sp,sp,8
+      jr      ra
+      nop
+    </Location>
+    <Variable name="XX" file="BATTLE_BIN" offset="F6170" bytes="2" default="AAAA" />
+    <Variable name="YY" file="BATTLE_BIN" offset="F6174" bytes="2" default="AAAB" />  
+  </Patch>
+  <Patch name="AFAE: Double Addend: Healing multiplied by 0.XXXXYYYY decimal (default 2/3)">
+    <Description>
+      All healing multiplied by decimal. Requires All formulas apply elemental patch 
+      (and that patch must be patched first, not at the same time), then the damage addend
+      patch (which must also be patched first, not at the same time)
+    </Description>
+    <Location file="BATTLE_BIN" offset="F6200" mode="ASM">
+      j       0x15d280
+    </Location>
+    <Location file="BATTLE_BIN" offset="F6280" mode="ASM">
+      lui     t0,0x8019
+      lw      t1,0x2d90(t0)
+      lw      t2,0x2d8c(t0)
+      lhu     t3,6(t1)
+      li      t7,0xaaaaaaab
+      
+      sltiu   t8,t3,1
+      sltiu   t8,t8,1
+      multu   t3,t7
+      mfhi    t3
+      sltiu   t9,t3,1
+      and     t8,t8,t9
+      addu    t3,t3,t8
+      
+      lhu     t4,4(t2)
+      lhu     t5,10(t1)
+      
+      sltiu   t8,t4,1
+      sltiu   t8,t8,1
+      multu   t4,t7
+      mfhi    t4
+      sltiu   t9,t4,1
+      and     t8,t8,t9
+      addu    t4,t4,t8
+      
+      lhu     t6,8(t2)
+      sh      t3,6(t1)
+      
+      sltiu   t8,t5,1
+      sltiu   t8,t8,1
+      multu   t5,t7
+      mfhi    t5
+      sltiu   t9,t5,1
+      and     t8,t8,t9
+      addu    t5,t5,t8
+      
+      sh      t4,4(t2)
+      sh      t5,10(t1)
+
+      sltiu   t8,t6,1
+      sltiu   t8,t8,1
+      multu   t6,t7
+      mfhi    t6
+      sltiu   t9,t6,1
+      and     t8,t8,t9
+      addu    t6,t6,t8
+
+      jr      ra
+      sh      t6,8(t2)
+    </Location>
+    <Variable name="XX" file="BATTLE_BIN" offset="F6290" bytes="2" default="AAAA" />
+    <Variable name="YY" file="BATTLE_BIN" offset="F6294" bytes="2" default="AAAB" />
+  </Patch>
+  <Patch name="Target's Faith in Spell damage calculations becomes XX%">
+    <Variable name="XX" file="BATTLE_BIN" offset="1201F8" default="46"/>
+    <Location file="BATTLE_BIN" offset="1201F9">
+        000234
+      00000000
+    </Location>
+  </Patch>
+  <Patch name="[Half of MP] becomes [No MP Cost]">
+    <Description>[Half of MP] becomes [No MP Cost]</Description>
+    <Location file="BATTLE_BIN" offset="116B6C" mode="ASM">
+      addu a0,zero,zero
+    </Location>
+  </Patch>
+  <Patch name="Require Materia Blade -> Require Item Type X (Default Lance)">
+    <Description>
+      Require Materia Blade -> Require Item Type X (Default 0x0F = Lance)
+  	  Weapon Type List:
+        00 = Fists
+        01 = Daggers
+        02 = Ninjato
+        03 = Sword
+        04 = Knight Sword
+        05 = Katana
+        06 = Axe
+        07 = Rod
+        08 = Staff
+        09 = Flail
+        0A = Gun
+        0B = Crossbow
+        0C = Bow
+        0D = Instrument
+        0E = Book
+        0F = Lance
+        10 = Stick/Pole
+        11 = Bag
+        12 = Carpet/Veil
+    </Description>
+    <Location file="SCUS_942_21" offset="4CE24" mode="ASM">
+      li      t0, 0x0f
+      move 	  v1, a1
+      sll	  t1, v1, 1
+      addu	  t1, t1, v1
+      sll	  t1, t1, 2
+      lbu	  v0, 0x80062ebd(t1)
+      lbu	  t3, 0x0184(s1)
+      subu 	  t1, v0, t0
+      sltiu	  t1, t1, 1
+      sll	  t1, t1, 2
+      or	  t3, t3, t1
+      j       0x5c668
+      sb	  t3, 0x0184(s1)
+    </Location>
+    <Variable name="X" file="SCUS_942_21" offset="4CE24" default="0F" />
+  </Patch>
+  <Patch name="Apply defense: Item (Unknown 1) = Physical damage reduction (%); (Unknown 2) = Magical damage reduction (%)">
+    <Description>
+      See XML - If using with other patches, check comments in second Location tag to see what to uncomment.
+      In the item data, this patch interprets Unknown 1 as Physical damage reduction (percentage) and Unknown 2 as Magical damage reduction (percentage).
+      The damage reduction percentage for each piece of equipment is added to determine the total damage reduction.
+      An ability's classification as physical or magical is determined by the 'Physical Attack' and 'Magical Attack' AI flags for the ability.
+      If an ability is flagged with both (this shouldn't happen, really), both damage reduction percentages (physical AND magical) will be applied 
+      (the sum of the two)!
+    </Description>
+    <Location file="BATTLE_BIN" offset="1249F0" mode="ASM">
+      j       0x15d230
+    </Location>
+    <Location file="BATTLE_BIN" offset="F6230" mode="ASM">
+      addiu   sp,sp,-8
+      sw      ra,4(sp)
+      jal     0x152300              # Call new defense routine
+      nop
+      # jal     0x186ff8              # If using "All formulas apply elemental" patch, uncomment this
+      # nop
+      # jal     0x15d160              # If using damage multiplied by decimal/healing patches, uncomment this
+      # nop
+      lw      ra,4(sp)
+      addiu   sp,sp,8
+      jr      ra
+      nop
+    </Location>
+    <Location file="BATTLE_BIN" offset="EB300" mode="ASM">
+      lui     t0,0x8019
+      lw      t1,0x2d98(t0)         # Target unit
+      lhu     t2,0x38d6(t0)         # Ability ID
+      li      t3,0xff               # Code for empty slot
+      
+      sll     t2,t2,3               # Ability ID * 8
+      lbu     t4,0x8005ebf6(t2)     # Ability AI Behavior Flags 3
+      addiu   t1,t1,0x1a            # Unit equipment offset
+      andi    t8,t4,0x01            # Use physical defense (1 = true, 0 = false)
+      andi    t9,t4,0x02            # Use magical defense (2 = true, 0 = false)              
+
+      sll     t8,t8,31
+      sra     t8,t8,31              # Use physical defense (0xffffffff = true, 0 = false)
+      sll     t9,t9,30
+      sra     t9,t9,31              # Use magical defense (0xffffffff = true, 0 = false)
+      
+      lui     t2,0x8006             # Base address for item data
+      li      v0,0                  # Result = 0
+      li      v1,0                  # Loop counter = 0
+      
+LST:  lbu     t4,0(t1)              # Item ID for current equipment slot
+      addiu   t1,t1,1               # Increment slot
+      addiu   v1,v1,1               # Increment loop counter
+      beq     t4,t3,LCH             # If slot is empty, skip this item and continue loop
+      sll     t5,t4,1               # Item ID * 2
+      beq     t4,zero,LCH           # If slot = 0 (nothing), skip this item and continue loop
+      addu    t5,t5,t4              # Item ID * 3
+      sll     t5,t5,2               # Item ID * 12
+      addu    t5,t2,t5              
+      lbu     t6,0x2ebe(t5)         # Physical defense (0x06)
+      lbu     t7,0x2ec3(t5)         # Magical defense (0x0b)
+      and     t6,t6,t8              # Effective physical defense (0 if unused)
+      and     t7,t7,t9              # Effective magical defense (0 if unused)
+      addu    t5,t6,t7              # Defense value
+      addu    v0,v0,t5              # Add to defense tally
+      
+LCH:  sltiu   t6,v1,7
+      bne     t6,zero,LST           # Loop while counter is less than 7
+      nop
+      
+      lw      t1,0x2d90(t0)
+      lw      t2,0x2d8c(t0)
+      lhu     t3,4(t1)              # Load old HP damage
+      lhu     t4,6(t2)              # Load old returned HP healing (drain)
+      
+      li      t7,100
+      subu    t5,t7,v0
+      slt     t6,zero,t5
+      sll     t6,t6,31
+      sra     t6,t6,31
+      and     t5,t5,t6              # 100 - Defense% (Minimum 0)
+      
+      multu   t3,t5
+      mflo    t3                    # Old HP Damage * (100 - Defense%)
+      addiu   t3,t3,50              # Round the next division result
+      li      t8,0x51eb851f         
+      multu   t3,t8
+      mfhi    t3                    
+      sra     t3,t3,5               # Old HP Damage * (100 - Defense%) / 100
+      sh      t3,4(t1)              # Save new HP damage
+        
+      multu   t4,t5
+      mflo    t4                    # Old Returned HP Healing * (100 - Defense%)
+      addiu   t4,t4,50              # Round the next division result
+      nop
+      multu   t4,t8                
+      mfhi    t4
+      sra     t4,t4,5               # Old Returned HP Healing * (100 - Defense%) / 100
+      
+      jr      ra                    # Return defense tally (v0)
+      sh      t4,6(t2)              # Save new returned HP healing
+    </Location>
+  </Patch>
+</Patches>
